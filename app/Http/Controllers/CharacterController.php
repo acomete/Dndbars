@@ -11,7 +11,7 @@ class CharacterController extends Controller
         32836801, // Fer
         29872982, // Finnan
         29975327, // Gorlgröm
-        30189215, // Hope Laslikar
+        36813674, // Hope Laslikar
         30159477, // Nur Khan
 
     ];
