@@ -13,7 +13,6 @@ class CharacterController extends Controller
         29975327, // Gorlgröm
         36813674, // Hope Laslikar
         30159477, // Nur Khan
-
     ];
 
     public function index(CharacterService $service)
