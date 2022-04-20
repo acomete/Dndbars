@@ -25,15 +25,32 @@
             @if ($character && isset($character->name))
                 <div class="character-block">
                     <div class="avatar">
-                        <img src="{{$character->avatarUrl}}" alt="{{$character->name}}"/>
+                        <img src="{{$character->decorations['avatarUrl']}}" alt="{{$character->name}}"
+                        />
+                        @if ($character->decorations['frameAvatarUrl'])
+                            <img src="{{$character->decorations['frameAvatarUrl']}}" alt="{{$character->name}}"
+                                 style="width: 150px; height: 150px;"
+                            />
+                        @endif
                     </div>
                     <div class="stats">
                         <div class="name">{{$character->name}}</div>
                         <div class="bar">
-                            <span style="width: {{$character->overrideHitPoints
-                                                    ? ($character->overrideHitPoints-$character->removedHitPoints)*100/$character->overrideHitPoints
-                                                    : 0 }}%">{{$character->overrideHitPoints-$character->removedHitPoints}}</span>
+                            <span style="width: {{$character->hps->current*100/$character->hps->max}}%">
+                            </span>
                         </div>
+                        @if($character->mana->max > 0)
+                            <div class="bar mana">
+                            <span style="width: {{$character->mana->current*100/$character->mana->max}}%">
+                            </span>
+                            </div>
+                        @endif
+                        @if($character->ki->max > 0)
+                            <div class="bar ki">
+                            <span style="width: {{$character->ki->current*100/$character->ki->max}}%">
+                            </span>
+                            </div>
+                        @endif
                     </div>
                 </div>
             @else

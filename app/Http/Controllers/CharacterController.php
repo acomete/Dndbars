@@ -20,7 +20,23 @@ class CharacterController extends Controller
         $service->auth();
 
         $characters = array_map(function (int $id) use ($service) {
-            return (object) $service->getCharacterData($id);
+            $character =  (object) $service->getCharacterData($id);
+            $character->hps = (object) [
+                'current' => $service->currentHps($character),
+                'max' => $service->maxHps($character),
+            ];
+
+            $character->mana = (object) [
+                'current' => $service->currentMana($character),
+                'max' => $service->maxMana($character),
+            ];
+
+            $character->ki = (object) [
+                'current' => $service->currentKi($character),
+                'max' => $service->maxKi($character),
+            ];
+
+            return $character;
         }, $this->characterIds);
 
         return view('characters', ['characters' => $characters]);
